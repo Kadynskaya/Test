@@ -1,51 +1,29 @@
-// modal
-const link = document.getElementById('feedback-link');
-const modal = document.getElementById('company__feedback-container');
-const closeBtn = document.querySelector('.company__feedback-close');
+// slider
 
-link.addEventListener('click', function() {
-    modal.style.display = 'flex'; 
-})
-
-closeBtn.addEventListener('click', function () {
-	modal.style.display = "none";
-})
-
-window.addEventListener('click', function (e) {
-	if(e.target == modal) {
-   		modal.style.display = "none";
-	}  	
+$('.carousel').carousel({
+    interval: 4000
 })
 
 
-// slides
-const slides = document.getElementsByClassName("company__slider-img");
+// sidebar 
 
-let slideIndex = 1;
-showDivs(slideIndex);
+const burger = document.getElementById('munuToggle');
+const  sidebar = document.getElementById('sidebarContainer');
+const close = document.getElementById('closeBtn');
 
-function plusDivs(n) {
-  showDivs(slideIndex += n);
-}
+burger.addEventListener('click', function() {
+    sidebar.style.display = 'block';
+    document.body.style.overflow = "hidden";
+});
 
-function showDivs(n) {
-  if (n > slides.length) {slideIndex = 1}
-  if (n < 1) {slideIndex = slides.length}
-  for (let i = 0; i < slides.length; i++) {
-    slides[i].style.display = "none";  
-  }
-  slides[slideIndex-1].style.display = "block";  
-}
+close.addEventListener('click', function() {
+    sidebar.style.display = 'none';
+    document.body.style.overflow = "auto";
+});
 
-let myIndex = 0;
-carousel();
-
-function carousel() {
-  for (let i = 0; i < slides.length; i++) {
-    slides[i].style.display = "none";  
-  }
-  myIndex++;
-  if (myIndex > slides.length) {myIndex = 1}    
-  slides[myIndex-1].style.display = "block";  
-  setTimeout(carousel, 4000);    
-}
+window.addEventListener('click', function(e) {
+    if(e.target == sidebar) {
+        sidebar.style.display = 'none';
+        document.body.style.overflow = "auto";
+    }
+})
